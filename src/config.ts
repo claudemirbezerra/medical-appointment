@@ -21,7 +21,7 @@ export const config: ModelConfig = {
   httpReferer: '',
   xTitle: 'IA Devs - Prompt Chaining Article Generator',
   models: [
-    'dots-studio/dots-3-note-preview:free',
+    'liquid/lfm-2.5-2.6b:free',
     //'arcee-ai/trinity-large-preview:free',
   ],
   provider: {

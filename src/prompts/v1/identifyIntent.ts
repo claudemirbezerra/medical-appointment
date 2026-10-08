@@ -4,8 +4,8 @@ export const IntentSchema = z.object({
   intent: z.enum(['schedule', 'cancel', 'unknown']).describe('The user intent'),
   professionalId: z.number().optional().describe('ID of the medical professional'),
   professionalName: z.string().optional().describe('Name of the medical professional'),
-  datetime: z.string().optional().describe('Appointment date and time in ISO format'),
-  patientName: z.string().optional().describe('Patient name extracted from question'),
+  datetime: z.string().optional().describe('Appointment date and time in ISO format, it comes from human message'),
+  patientName: z.string().optional().describe('Patient name extracted from human message question'),
   reason: z.string().optional().describe('Reason for appointment (for scheduling)'),
 });
 
@@ -53,6 +53,10 @@ export const getSystemPrompt = (professionals: any[]) => {
       {
         input: 'What is the weather today?',
         output: { intent: 'unknown' }
+      },
+      {
+        input: 'Olá, sou Maria Santos e quero agendar uma consulta com Dr. Alicio da Silva para amanhã às 16h para um check-up regular',
+        output: { intent: 'schedule', professionalId: 1, professionalName: 'Dr. Alicio da Silva', datetime: '2026-10-09T16:00:00.000Z', patientName: 'Maria Santos', reason: 'check-up' }
       }
     ]
   });
